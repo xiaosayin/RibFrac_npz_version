@@ -116,10 +116,11 @@ def train(model, train_set, test_set, save, valid_set, n_epochs):
 
     # optimizer and scheduler
     optimizer = torch.optim.Adam(model_wrapper.parameters(), lr=cfg.lr)
-    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=cfg.milestones,
-                                                     gamma=cfg.gamma)
+    scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer,max_lr=cfg.max_lr, epochs=cfg.n_epochs, steps_per_epoch = len(train_loader))
+    # scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=cfg.milestones,
+    #                                                 gamma=cfg.gamma)
     # Start logging
-    logs = ['loss', 'acc', 'acc0', 'acc1']
+    logs = ['loss', 'acc', 'acc0', 'acc1','acc2','acc3']
     train_logs = ['train_'+log for log in logs]
     test_logs = ['test_'+log for log in logs]+['test_auc',]
 

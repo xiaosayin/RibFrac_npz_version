@@ -48,12 +48,13 @@ class LIDCSegConfig():
 
 class LIDCClassConfig(LIDCSegConfig):
     batch_size = 16
-    n_epochs = 24
+    n_epochs = 50
     drop_rate = 0
     seed = 0
     num_workers = 8
 
     # optimizer
+    max_lr = 0.1
     lr = 0.001
     wd = 0.0001
     momentum=0.9

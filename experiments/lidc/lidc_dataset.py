@@ -90,7 +90,7 @@ class LIDCTwoClassDataset(Dataset):
         # self.map = {'1':0, '2':0, '4':1, '5':1}
     def __getitem__(self, index):
         a = np.load(os.path.join(self.data_path, 'nodule', self.names[index]))
-        return self.transform(a['voxel'] * a['mask']), int(self.info.loc[self.names[index], 'label_code']-1 + 0.5)
+        return self.transform(a['voxel']), int(self.info.loc[self.names[index], 'label_code']-1 + 0.5)
             # return self.transform(npz['voxel']), self.map[str(self.info.loc[self.names[index][:-4], 'malignancy_mode'])]
             # -1 means convert [1-5] to [0-4]
         # 这里是训练集和标签的生成
