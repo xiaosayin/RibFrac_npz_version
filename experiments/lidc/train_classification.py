@@ -57,9 +57,9 @@ def main(save_path=cfg.save,
 
 
     # Datasets  crop_size down
-    train_set = LIDCTwoClassDataset(crop_size=50, move=5, data_path=env.data, train=True)
+    train_set = LIDCTwoClassDataset(crop_size=2, move=5, data_path=env.data, train=True)
     valid_set = None
-    test_set = LIDCTwoClassDataset(crop_size=50, move=5, data_path=env.data, train=False)
+    test_set = LIDCTwoClassDataset(crop_size=2, move=5, data_path=env.data, train=False)
 
     # Define model
     model_dict = {'resnet18': ClsResNet, 'vgg16': ClsVGG, 'densenet121': ClsDenseNet}
@@ -116,7 +116,7 @@ def train(model, train_set, test_set, save, valid_set, n_epochs):
 
     # optimizer and scheduler
     optimizer = torch.optim.Adam(model_wrapper.parameters(), lr=cfg.lr)
-    scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer,max_lr=cfg.max_lr, epochs=cfg.n_epochs, steps_per_epoch = len(train_loader))
+    scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer,max_lr=cfg.max_lr, epochs=cfg.n_epochs,steps_per_epoch = len(train_loader))# steps_per_epoch = len(train_loader
     # scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=cfg.milestones,
     #                                                 gamma=cfg.gamma)
     # Start logging

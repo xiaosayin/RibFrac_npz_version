@@ -54,7 +54,7 @@ class LIDCClassConfig(LIDCSegConfig):
     num_workers = 8
 
     # optimizer
-    max_lr = 0.01
+    max_lr = 1
     lr = 0.001
     wd = 0.0001
     momentum=0.9
